@@ -3,12 +3,17 @@ import jieba
 
 
 seg_list=jieba.cut("我喜歡吃漢堡還有薯條，此外，我也很喜歡五月天的歌曲")
-for sg in seg_list:
-	if(sg!="，"):
-		print(sg)
+# for sg in seg_list:
+# 	if(sg!="，"):
+# 		print(sg)
 word_num=0 # 單詞編號 (index)
 word_dict={} # 單詞字典 {key:index}
-wiki_counter_list=[[0,0],[0,0]]
+wiki_counter_list=[]
+obj_list=[] # 增加一列的model
+
+# test_obj=[]
+# test=[]
+
 # 判斷Dictionary有沒有這個單詞
 for sg in seg_list:
 	if(sg not in word_dict):
@@ -17,14 +22,14 @@ for sg in seg_list:
 		word_dict[sg]=word_num
 		word_num+=1
 
-		# 加入到新list
-		if(word_num>1):
-			wiki_counter_list[0].insert(len(wiki_counter_list[0]),0)
-			wiki_counter_list[1].insert(len(wiki_counter_list[1]),0)
+		# list增加1個元素
+		obj_list.insert(len(obj_list),0)
 
-# for sg in seg_list:
-# 	print(sg)
-# print(wiki_counter_list)	
+# 轉成方陣array
+for i in range(0,len(obj_list)):	
+	wiki_counter_list.insert(len(wiki_counter_list),obj_list)
+
+
 	
 # # 兩兩配對
 # seg_index=1
