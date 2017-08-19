@@ -2,10 +2,13 @@
 import jieba
 
 
-seg_list=jieba.cut("我喜歡吃漢堡還有薯條，此外，我也很喜歡五月天的歌曲")
-# for sg in seg_list:
-# 	if(sg!="，"):
-# 		print(sg)
+input_text=jieba.cut("我喜歡吃漢堡還有薯條，此外，我也很喜歡五月天的歌曲")
+seg_list=[]
+for sg in input_text:
+	seg_list.append(sg)
+print(seg_list)
+
+# print(seg_list)
 word_num=0 # 單詞編號 (index)
 word_dict={} # 單詞字典 {key:index}
 wiki_counter_list=[]
@@ -29,12 +32,14 @@ for sg in seg_list:
 for i in range(0,len(obj_list)):	
 	wiki_counter_list.insert(len(wiki_counter_list),obj_list)
 
-
 	
-# # 兩兩配對
-# seg_index=1
-# for sg in seg_list:
-# 	for oth_sg in range(seg_index,len(seg_list)):
+# 兩兩配對=========================
+
+seg_index=1
+for sg in seg_list:
+	for oth_sg in range(seg_index,len(seg_list)):
+		print(sg+" | "+seg_list[oth_sg])
+	seg_index+=1
 
 
 # print(word_dict)
