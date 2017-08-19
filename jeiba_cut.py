@@ -32,14 +32,19 @@ for sg in seg_list:
 		word_dict[sg]=word_num
 		word_num+=1
 
-		# # list增加1個元素
-		# obj_list.insert(len(obj_list),0)
+		# array增加1列1行
+		# for i in range(word_num):
+		obj_list=[0]*word_num
+		for i in range(len(wiki_counter_list)):
+			wiki_counter_list[i].insert(len(wiki_counter_list),0)
+		wiki_counter_list.insert(len(wiki_counter_list),obj_list)
+
+			# obj_list.insert(len(obj_list),0)
 
 # 轉成方陣array
-wiki_counter_list=arr = [([0] * word_num) for i in range(word_num)]
+# wiki_counter_list=[([0] * word_num) for i in range(word_num)]
 # for i in range(0,len(obj_list)):	
 # 	wiki_counter_list.insert(len(wiki_counter_list),obj_list)
-# wiki_counter_list2=wiki_counter_list
 	
 # 兩兩配對=========================
 seg_index=1
