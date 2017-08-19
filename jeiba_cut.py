@@ -1,15 +1,22 @@
 # encoding=utf-8
 import jieba
 
+# 讀取檔案==================
+f=open("wiki_00",encoding="utf8")
+lines=f.readlines()
+for i in line:
+	
 
-input_text=jieba.cut("我喜歡吃漢堡還有薯條，此外，我也很喜歡五月天的歌曲")
+
+
+input_text=jieba.cut("我喜歡吃漢堡還有我愛吃薯條")
 seg_list=[]
 for sg in input_text:
-	seg_list.append(sg)
+	if(sg!="，" and sg!="。"):
+		seg_list.append(sg)
 print(seg_list)
 
-# print(seg_list)
-word_num=0 # 單詞編號 (index)
+word_num=0 # 單詞編號 (index)/計算有多少個新的詞
 word_dict={} # 單詞字典 {key:index}
 wiki_counter_list=[]
 obj_list=[] # 增加一列的model
@@ -25,21 +32,28 @@ for sg in seg_list:
 		word_dict[sg]=word_num
 		word_num+=1
 
-		# list增加1個元素
-		obj_list.insert(len(obj_list),0)
+		# # list增加1個元素
+		# obj_list.insert(len(obj_list),0)
 
 # 轉成方陣array
-for i in range(0,len(obj_list)):	
-	wiki_counter_list.insert(len(wiki_counter_list),obj_list)
-
+wiki_counter_list=arr = [([0] * word_num) for i in range(word_num)]
+# for i in range(0,len(obj_list)):	
+# 	wiki_counter_list.insert(len(wiki_counter_list),obj_list)
+# wiki_counter_list2=wiki_counter_list
 	
 # 兩兩配對=========================
-
 seg_index=1
-for sg in seg_list:
-	for oth_sg in range(seg_index,len(seg_list)):
-		print(sg+" | "+seg_list[oth_sg])
+for word1 in seg_list:
+	for word2 in range(seg_index,len(seg_list)):
+		print(word1+" | "+seg_list[word2]+"====="+str(word_dict[word1])+" | "+str(word_dict[seg_list[word2]]))
+		wiki_counter_list[word_dict[word1]][word_dict[seg_list[word2]]]+=1
+		wiki_counter_list[word_dict[seg_list[word2]]][word_dict[word1]]+=1
+
 	seg_index+=1
+
+# print(wiki_counter_list)
+for i in range(0,len(wiki_counter_list)):
+	print(wiki_counter_list[i])
 
 
 # print(word_dict)
